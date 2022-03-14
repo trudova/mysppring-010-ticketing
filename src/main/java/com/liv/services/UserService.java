@@ -1,4 +1,10 @@
 package com.liv.services;
 
-public interface UserService {
+import com.liv.dto.UserDTO;
+
+import java.util.List;
+
+public interface UserService extends CrudService<UserDTO, String> {
+
+
 }
