@@ -32,4 +32,9 @@ public class UserServiceImpl extends AbstractMapService<UserDTO, String> impleme
     public UserDTO save(UserDTO obj) {
         return super.save(obj.getUserName(),obj);
     }
+
+    @Override
+    public void update(UserDTO obj) {
+        super.update(obj.getUserName(),obj);
+    }
 }

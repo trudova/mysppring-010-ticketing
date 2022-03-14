@@ -1,7 +1,7 @@
 package com.liv.enums;
 
 public enum Gender {
-    FEMALE("female"),MALE("male");
+    FEMALE("Female"),MALE("Male");
     private final String value;
 
     Gender(String value) {
