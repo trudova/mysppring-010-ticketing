@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class UserServiceImpl extends AbstractMapService<UserDTO, String> implements UserService {
     @Override
@@ -36,5 +38,16 @@ public class UserServiceImpl extends AbstractMapService<UserDTO, String> impleme
     @Override
     public void update(UserDTO obj) {
         super.update(obj.getUserName(),obj);
+    }
+
+    @Override
+    public List<UserDTO> findManagers() {
+        return super.findAll().stream().filter(e-> e.getRole().getId()==2l).collect(Collectors.toList());
+
+    }
+
+    @Override
+    public List<UserDTO> findEmployees() {
+        return super.findAll().stream().filter(e-> e.getRole().getId()==3l).collect(Collectors.toList());
     }
 }

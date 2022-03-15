@@ -51,11 +51,26 @@ public class DataGenerator implements CommandLineRunner {
         UserDTO userDTO4 = new UserDTO("Paul", "Doe",
                 "doe3@gmail.com", "abc", "2944552355",
                 true, adminRole, Gender.MALE);
+        UserDTO userDTO5 = new UserDTO("Jane", "Doe",
+                "ll2@gmail.com", "abc", "2044552355",
+                true, managerRole, Gender.FEMALE);
+        UserDTO userDTO6 = new UserDTO("Liv", "True",
+                "lov@gmail.com", "abc", "2344552355",
+                true, employeeRole, Gender.FEMALE);
+        UserDTO userDTO7 = new UserDTO("Paul", "Doe",
+                "do3@gmail.com", "abc", "2944552355",
+                true, employeeRole, Gender.MALE);
+        UserDTO userDTO8 = new UserDTO("Joe", "Doe",
+                "do2@gmail.com", "abc", "2044552355",
+                true, managerRole, Gender.FEMALE);
         userService.save(userDTO1);
         userService.save(userDTO2);
         userService.save(userDTO3);
         userService.save(userDTO4);
-
+        userService.save(userDTO5);
+        userService.save(userDTO6);
+        userService.save(userDTO7);
+        userService.save(userDTO8);
         ProjectDTO project1 = new ProjectDTO("Sping MVC", "PR001",
                 "firstProj", userDTO1, LocalDate.now(), LocalDate.now().plusDays(50), Status.OPEN);
         ProjectDTO project2 = new ProjectDTO("API", "PR002",

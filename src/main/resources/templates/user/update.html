@@ -80,8 +80,7 @@
                     <label for="inputState">Role</label>
                     <select id="inputState" th:field="*{role}" class="form-control">
 
-                        <option th:each="role:${roles}" th:value="${role.id}" th:text="${role.description}"
-                                th:selected="${role.id}==${user.role.id}">...
+                        <option th:each="role:${roles}" th:value="${role.id}" th:text="${role.description}">...
                         </option>
                     </select>
                 </div>

@@ -25,7 +25,7 @@ public class ProjectController {
     public String getCreateProjectForm(Model model) {
         model.addAttribute("project", new ProjectDTO());
         model.addAttribute("projects", projectService.findAll());
-        model.addAttribute("managers", userService.findAll());
+        model.addAttribute("managers", userService.findManagers());
         return "project/create";
     }
 
@@ -42,4 +42,5 @@ public class ProjectController {
 
         return "redirect:/project/create";
     }
+
 }
