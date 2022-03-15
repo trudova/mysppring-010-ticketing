@@ -25,16 +25,16 @@
 
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                        <label for="inputFirstName" th:field="*{projectName}">Project name</label>
-                        <input type="text" class="form-control" id="inputFirstName"
+                        <label for="inputFirstName" >Project name</label>
+                        <input type="text" class="form-control" th:field="*{projectName}" id="inputFirstName"
                                placeholder="Project name" required>
                         <div class="invalid-feedback">
                             Please enter first name.
                         </div>
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="inputLastName"th:field="*{projectCode}">Project code</label>
-                        <input type="text" class="form-control" id="inputLastName"
+                        <label for="inputLastName">Project code</label>
+                        <input type="text" class="form-control" th:field="*{projectCode}" id="inputLastName"
                                placeholder="Project code" required>
                         <div class="invalid-feedback">
                             Please enter last name.
@@ -102,14 +102,14 @@
             <td th:text="${proj.projectName}"></td>
             <td th:text="${proj.projectCode}"></td>
             <td th:text="${proj.manager.firstName +' '+proj.manager.lastName}"></td>
-            <td th:text="${proj.startDate}"></td>
-            <td th:text="${proj.endDate}"></td>
-            <td th:text="${proj.projectStatus.value}"></td>
+            <td th:text="${#temporals.format(proj.startDate, 'MMM dd yyyy')}"></td>
+            <td th:text="${#temporals.format(proj.endDate, 'MMM dd yyyy')}"></td>
+            <td th:text="${proj.projectStatus}"></td>
             <td>
                 <a >
                     <button class="btn bg-warning">update</button>
                 </a>
-                <a >
+                <a th:href="@{/project/delete/{id}(id=${proj.projectCode})}">
                     <button class="btn bg-danger">delete</button>
                 </a>
                 <a >
