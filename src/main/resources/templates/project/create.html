@@ -20,80 +20,61 @@
             <h1 class="p-5">Register new employee</h1>
         </div>
         <div class="card-body">
-            <form th:action="@{/user/update/{id}(id=${user.userName})}" method="post" th:object="${user}"
-                  class="needs-validation" novalidate>
+            <form th:action="@{/project/create}" method="post" class="needs-validation" novalidate>
 
 
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                        <label for="inputFirstName">First name</label>
-                        <input type="text" th:field="*{firstName}" class="form-control" id="inputFirstName"
-                               placeholder="First name" required>
+                        <label for="inputFirstName">Project name</label>
+                        <input type="text" class="form-control" id="inputFirstName"
+                               placeholder="Project name" required>
                         <div class="invalid-feedback">
                             Please enter first name.
                         </div>
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="inputLastName">Last name</label>
-                        <input type="text" th:field="*{lastName}" class="form-control" id="inputLastName"
-                               placeholder="Last Name" required>
+                        <label for="inputLastName">Project code</label>
+                        <input type="text" class="form-control" id="inputLastName"
+                               placeholder="Project code" required>
                         <div class="invalid-feedback">
                             Please enter last name.
                         </div>
                     </div>
-                    <div class="form-group col-md-4">
-                        <label for="phone">Phone number</label>
-                        <input type="text" th:field="*{phone}" class="form-control" id="phone" placeholder="Birthday"
-                               required>
-                        <div class="invalid-feedback">
-                            type phone number
-                        </div>
-                    </div>
                 </div>
-
 
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="inputEmail4">Email</label>
-                        <input type="email" th:field="*{userName}" class="form-control" id="inputEmail4"
-                               placeholder="Email" required>
+                        <label for="date">Start date</label>
+                        <input type="date" class="form-control" id="date"
+                               placeholder="mm/dd/yyyy" required>
                         <div class="invalid-feedback">
-                            Please choose a username.
+                            Please choose a start date.
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="inputPassword4">Password</label>
-                        <input type="password" th:field="*{password}" class="form-control" id="inputPassword4"
-                               placeholder="Password" required>
+                        <label for="date2">End date</label>
+                        <input type="date" class="form-control" id="date2"
+                               placeholder="mm/dd/yyyy" required>
                         <div class="invalid-feedback">
-                            Please choose a password.
+                            Please choose end date.
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="password2">Password confirm</label>
-                    <input type="text" th:field="*{password}" class="form-control" id="password2"
-                           placeholder="1234 Main St">
-                </div>
+
 
                 <div class="form-group col-md-4">
-                    <label for="inputState">Role</label>
-                    <select id="inputState" th:field="*{role}" class="form-control">
-
-                        <option th:each="role:${roles}" th:value="${role.id}" th:text="${role.description}"
-                                th:selected="${role.id}==${user.role.id}">...
-                        </option>
+                    <label for="inputState">Manager</label>
+                    <select id="inputState" class="form-control">
+                        <option>...</option>
                     </select>
                 </div>
 
                 <div class="form-group d-flex ">
-                    <label for="male">Male</label>
-                    <input type="radio" th:field="*{gender}" th:value="MALE" class="form-control" id="male">
-                    <label for="female">female</label>
-                    <input type="radio" th:field="*{gender}" th:value="FEMALE" class="form-control" id="female">
+                    <label for="details">Project details</label>
+                    <textarea type="radio" class="form-control" id="details"></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-warning">Save</button>
+                <button type="submit" class="btn btn-warning">Create</button>
             </form>
         </div>
     </div>
@@ -105,35 +86,36 @@
     <table class="table table-striped p-5">
         <thead>
         <tr>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Phone num</th>
-            <th scope="col">Password</th>
-            <th scope="col">Role</th>
-            <th scope="col">Gender</th>
+            <th scope="col">Project Name</th>
+            <th scope="col">Project Code</th>
+            <th scope="col">Manager</th>
+            <th scope="col">Start date</th>
+            <th scope="col">End date</th>
+            <th scope="col">Status</th>
             <th scope="col">Action</th>
 
 
         </tr>
         </thead>
         <tbody>
-        <tr th:each="user:${users}">
+        <tr>
 
-            <td th:text="${user.firstName}"></td>
-            <td th:text="${user.lastName}"></td>
-            <td th:text="${user.userName}"></td>
-            <td th:text="${user.phone}"></td>
-            <td>unknown</td>
-            <td th:text="${user.role.description}"></td>
-            <td th:text="${user.gender.value}"></td>
-            <td><a th:href="@{/user/update/{id}(id=${user.userName})}">
-                <button class="btn bg-warning">update</button>
-            </a>
-                <a th:href="@{/user/delete/{id}(id=${user.userName})}">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <a >
+                    <button class="btn bg-warning">update</button>
+                </a>
+                <a >
                     <button class="btn bg-danger">delete</button>
+                </a>
+                <a >
+                    <button class="btn bg-info">complete</button>
                 </a></td>
-
         </tr>
         </tbody>
     </table>
