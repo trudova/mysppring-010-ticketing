@@ -13,19 +13,19 @@
     <title>Employee</title>
 </head>
 <body>
-<div class="container d-flex justify-content-center">
+<div class="container d-flex justify-content-flex-start">
 
     <div class="card">
         <div class="card-header d-flex justify-content-center align-items-center bg-info">
             <h1 class="p-5">Register new employee</h1>
         </div>
         <div class="card-body">
-            <form th:action="@{/project/create}" method="post" class="needs-validation" novalidate>
+            <form th:action="@{/project/create}" method="post" th:object="${project}" class="needs-validation" novalidate>
 
 
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                        <label for="inputFirstName">Project name</label>
+                        <label for="inputFirstName" th:field="*{projectName}">Project name</label>
                         <input type="text" class="form-control" id="inputFirstName"
                                placeholder="Project name" required>
                         <div class="invalid-feedback">
@@ -33,7 +33,7 @@
                         </div>
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="inputLastName">Project code</label>
+                        <label for="inputLastName"th:field="*{projectCode}">Project code</label>
                         <input type="text" class="form-control" id="inputLastName"
                                placeholder="Project code" required>
                         <div class="invalid-feedback">
@@ -45,7 +45,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="date">Start date</label>
-                        <input type="date" class="form-control" id="date"
+                        <input type="date" th:field="*{startDate}" class="form-control" id="date"
                                placeholder="mm/dd/yyyy" required>
                         <div class="invalid-feedback">
                             Please choose a start date.
@@ -53,7 +53,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="date2">End date</label>
-                        <input type="date" class="form-control" id="date2"
+                        <input type="date" th:field="*{endDate}"class="form-control" id="date2"
                                placeholder="mm/dd/yyyy" required>
                         <div class="invalid-feedback">
                             Please choose end date.
@@ -64,14 +64,14 @@
 
                 <div class="form-group col-md-4">
                     <label for="inputState">Manager</label>
-                    <select id="inputState" class="form-control">
-                        <option>...</option>
+                    <select th:field="*{manager}" id="inputState" class="form-control">
+                        <option th:each="manager:${managers}" th:value="${manager.userName}" th:text="${manager.firstName +' '+manager.lastName}">...</option>
                     </select>
                 </div>
 
                 <div class="form-group d-flex ">
                     <label for="details">Project details</label>
-                    <textarea type="radio" class="form-control" id="details"></textarea>
+                    <textarea type="radio" th:field="*{projDetail}" class="form-control" id="details"></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-warning">Create</button>
@@ -94,18 +94,17 @@
             <th scope="col">Status</th>
             <th scope="col">Action</th>
 
-
         </tr>
         </thead>
         <tbody>
-        <tr>
+        <tr th:each="proj:${projects}">
 
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td th:text="${proj.projectName}"></td>
+            <td th:text="${proj.projectCode}"></td>
+            <td th:text="${proj.manager.firstName +' '+proj.manager.lastName}"></td>
+            <td th:text="${proj.startDate}"></td>
+            <td th:text="${proj.endDate}"></td>
+            <td th:text="${proj.projectStatus.value}"></td>
             <td>
                 <a >
                     <button class="btn bg-warning">update</button>

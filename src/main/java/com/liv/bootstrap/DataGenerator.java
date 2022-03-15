@@ -65,5 +65,13 @@ public class DataGenerator implements CommandLineRunner {
         ProjectDTO project4 = new ProjectDTO("deploy", "PR004",
                 "firstProj", userDTO1, LocalDate.now(), LocalDate.now().plusDays(30), Status.COMPLETE);
 
+        projectService.save(project1);
+        projectService.save(project2);
+        projectService.save(project3);
+        projectService.save(project4);
+
+
+
+
     }
 }
