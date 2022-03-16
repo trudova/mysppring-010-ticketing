@@ -1,9 +1,11 @@
 package com.liv.implimentation;
 
 import com.liv.dto.TaskDTO;
+import com.liv.enums.Status;
 import com.liv.services.TaskService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 @Service
 public class TaskServiceImp extends AbstractMapService<TaskDTO, Long> implements TaskService {
@@ -20,6 +22,12 @@ public class TaskServiceImp extends AbstractMapService<TaskDTO, Long> implements
 
     @Override
     public void update(TaskDTO obj) {
+//        obj.setTaskStatus(Status.OPEN);
+//        obj.setAssignedDate(LocalDate.now());
+
+        TaskDTO foundProject =findById(obj.getId());
+        obj.setAssignedDate(foundProject.getAssignedDate());
+        obj.setTaskStatus(foundProject.getTaskStatus());
         super.update(obj.getId(), obj);
     }
 

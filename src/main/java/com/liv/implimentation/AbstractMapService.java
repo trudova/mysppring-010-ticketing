@@ -25,7 +25,7 @@ public abstract class AbstractMapService<T, ID> {
     }
 
     void update(ID id, T obj){
-        map.entrySet().removeIf(e-> e.getValue().equals(obj));
+       // map.entrySet().removeIf(e-> e.getValue().equals(obj));
         map.put(id,obj);
 
     }
