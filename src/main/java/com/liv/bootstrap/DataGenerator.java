@@ -2,6 +2,7 @@ package com.liv.bootstrap;
 
 import com.liv.dto.ProjectDTO;
 import com.liv.dto.RoleDTO;
+import com.liv.dto.TaskDTO;
 import com.liv.dto.UserDTO;
 import com.liv.entity.Role;
 import com.liv.enums.Gender;
@@ -9,6 +10,7 @@ import com.liv.enums.Status;
 import com.liv.implimentation.RoleServiceImp;
 import com.liv.services.ProjectService;
 import com.liv.services.RoleService;
+import com.liv.services.TaskService;
 import com.liv.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -21,13 +23,18 @@ public class DataGenerator implements CommandLineRunner {
     RoleService roleService;
     UserService userService;
     ProjectService projectService;
+    TaskService taskService;
 
     @Autowired
-    public DataGenerator(RoleService roleService, UserService userService, ProjectService projectService) {
+    public DataGenerator(RoleService roleService,
+                         UserService userService, ProjectService projectService,
+                         TaskService taskService) {
         this.roleService = roleService;
         this.userService = userService;
         this.projectService = projectService;
+        this.taskService = taskService;
     }
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -86,7 +93,9 @@ public class DataGenerator implements CommandLineRunner {
         projectService.save(project4);
 
 
-
-
+        TaskDTO task1 = new TaskDTO(1l, project1, userDTO1, "to do somthing", "do it right", Status.IN_PROGRESS, LocalDate.now().plusDays(20));
+        TaskDTO task2 = new TaskDTO(2l, project3, userDTO4, "to do somthing", "do it right", Status.IN_PROGRESS, LocalDate.now().plusDays(20));
+        taskService.save(task1);
+        taskService.save(task2);
     }
 }

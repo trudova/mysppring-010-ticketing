@@ -2,9 +2,10 @@ package com.liv.implimentation;
 
 import com.liv.dto.TaskDTO;
 import com.liv.services.TaskService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class TaskServiceImp extends AbstractMapService<TaskDTO, Long> implements TaskService {
 
     @Override
