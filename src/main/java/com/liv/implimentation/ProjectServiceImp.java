@@ -1,6 +1,7 @@
 package com.liv.implimentation;
 
 import com.liv.dto.ProjectDTO;
+import com.liv.enums.Status;
 import com.liv.services.ProjectService;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,10 @@ public class ProjectServiceImp extends AbstractMapService<ProjectDTO, String> im
 
     @Override
     public void update(ProjectDTO obj) {
+        ProjectDTO newProj = findById(obj.getProjectCode());
+        if (obj.getProjectStatus() ==null){
+            obj.setProjectStatus(newProj.getProjectStatus());
+        }
         super.update(obj.getProjectCode(), obj);
     }
 
@@ -35,5 +40,11 @@ public class ProjectServiceImp extends AbstractMapService<ProjectDTO, String> im
     @Override
     public ProjectDTO findById(String id) {
         return super.findById(id);
+    }
+
+    @Override
+    public void complete(ProjectDTO projectDTO) {
+        projectDTO.setProjectStatus(Status.COMPLETE);
+        super.save(projectDTO.getProjectCode(),projectDTO);
     }
 }

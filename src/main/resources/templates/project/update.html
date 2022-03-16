@@ -20,7 +20,7 @@
             <h1 class="p-5">Register new employee</h1>
         </div>
         <div class="card-body">
-            <form th:action="@{/project/create}" method="post" th:object="${project}" class="needs-validation" novalidate>
+            <form th:action="@{/project/update/{id}(id=${project.projectCode})}"method="post" th:object="${project}" class="needs-validation" novalidate>
 
 
                 <div class="form-row">
@@ -106,7 +106,7 @@
             <td th:text="${#temporals.format(proj.endDate, 'MMM dd yyyy')}"></td>
             <td th:text="${proj.projectStatus}"></td>
             <td>
-                <a th:href="@{/project/update/{id}(id=${proj.projectCode})}">
+                <a >
                     <button class="btn bg-warning">update</button>
                 </a>
                 <a th:href="@{/project/delete/{id}(id=${proj.projectCode})}">
